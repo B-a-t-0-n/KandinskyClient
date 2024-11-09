@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35219.272
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestAIFinForms", "TestAIFinForms\TestAIFinForms.csproj", "{EB4AB542-3CB7-429A-A3B8-90E230FF60D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KandinskyLibrary", "KandinskyLibrary\KandinskyLibrary.csproj", "{E07BF980-D946-4A67-9FB8-92F240409967}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EB4AB542-3CB7-429A-A3B8-90E230FF60D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB4AB542-3CB7-429A-A3B8-90E230FF60D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB4AB542-3CB7-429A-A3B8-90E230FF60D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB4AB542-3CB7-429A-A3B8-90E230FF60D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E07BF980-D946-4A67-9FB8-92F240409967}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E07BF980-D946-4A67-9FB8-92F240409967}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E07BF980-D946-4A67-9FB8-92F240409967}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E07BF980-D946-4A67-9FB8-92F240409967}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16387757-E3F3-46F9-9EB3-52E9BF95765A}
+	EndGlobalSection
+EndGlobal
