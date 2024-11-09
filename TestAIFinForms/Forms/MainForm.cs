@@ -40,6 +40,7 @@ namespace TestAIFinForms
         {
             buttonGenerate.Cursor = Cursors.WaitCursor;
             buttonGenerate.Click -= ButtonGenerate_Click!;
+            pictureBoxGenImage.Image = Properties.Resources._402930e27f800b4045fce958ddddcef4;
 
             string prompt = richTextBoxPromt.Text;
             if (string.IsNullOrWhiteSpace(prompt))
@@ -47,6 +48,18 @@ namespace TestAIFinForms
                 MessageBox.Show("введите промт");
                 buttonGenerate.Cursor = Cursors.Hand;
                 buttonGenerate.Click += ButtonGenerate_Click!;
+                pictureBoxGenImage.Image = null;
+                return;
+            }
+
+            int width = int.Parse(textBoxWeight.Text);
+            int height = int.Parse(textBoxHeight.Text);
+            if (width > 1024 || height > 1024)
+            {
+                MessageBox.Show("высота и ширина не должны быть больше 1024");
+                buttonGenerate.Cursor = Cursors.Hand;
+                buttonGenerate.Click += ButtonGenerate_Click!;
+                pictureBoxGenImage.Image = null;
                 return;
             }
 
