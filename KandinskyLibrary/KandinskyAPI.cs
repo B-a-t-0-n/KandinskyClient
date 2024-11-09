@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using KandinskyLibrary.Model;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
 using System.Text;
 
 namespace KandinskyLibrary
@@ -15,29 +17,25 @@ namespace KandinskyLibrary
             _httpClient.DefaultRequestHeaders.Add("X-Secret", $"Secret {secretKey}");
         }
 
-        public async Task<string[]?> GetModelAsync()
-        {
-            try
-            {
-                var response = await _httpClient.GetAsync(_url + "key/api/v1/models");
-                response.EnsureSuccessStatusCode();
+        public async Task<ModelDTO[]?> GetModelsAsync() => await _httpClient.GetFromJsonAsync<ModelDTO[]>(_url + "key/api/v1/models");
 
-                var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
-                return data;
-            }
-            catch (Exception ex) 
-            {
-                throw new Exception($"возникла ошибка получения моделей \"{ex.Message}\"");
-            }
-        }
+        public async Task<StyleDTO[]?> GetStylesAsync() => await _httpClient.GetFromJsonAsync<StyleDTO[]>("https://cdn.fusionbrain.ai/static/styles/key");
 
-        public async Task<string> GenerateAsync(string prompt, string modelId, int numImages = 1, int width = 1024, int height = 1024, string negativePrompt = "")
+        public async Task<string> GenerateAsync(
+            string prompt,
+            string modelId,
+            string style, 
+            int numImages = 1,
+            int width = 1024,
+            int height = 1024,
+            string negativePrompt = "")
         {
             try
             {
                 var parameters = new
                 {
                     type = "GENERATE",
+                    style,
                     num_images = numImages,
                     width,
                     height,
@@ -51,10 +49,10 @@ namespace KandinskyLibrary
                 var jsonParameters = JsonConvert.SerializeObject(parameters);
 
                 using var form = new MultipartFormDataContent
-            {
-                { new StringContent(jsonParameters, Encoding.UTF8, "application/json"), "params" },
-                { new StringContent(modelId), "model_id" }
-            };
+                {
+                    { new StringContent(jsonParameters, Encoding.UTF8, "application/json"), "params" },
+                    { new StringContent(modelId), "model_id" }
+                };
 
                 var response = await _httpClient.PostAsync(_url + "key/api/v1/text2image/run", form);
                 response.EnsureSuccessStatusCode();
@@ -69,7 +67,7 @@ namespace KandinskyLibrary
             
         }
 
-        public async Task<string[]?> CheckGenerationAsync(string requestId, int attempts = 1000, int delay = 1)
+        public async Task<string[]> CheckGenerationAsync(string requestId, int attempts = 1000, int delay = 1)
         {
             while (attempts > 0)
             {
@@ -77,7 +75,7 @@ namespace KandinskyLibrary
                 response.EnsureSuccessStatusCode();
 
                 var data = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
-                if (data.status.ToString() == "DONE")
+                if (data!.status.ToString() == "DONE")
                 {
                     return data.images.ToObject<string[]>();
                 }
@@ -85,7 +83,7 @@ namespace KandinskyLibrary
                 attempts--;
                 await Task.Delay(delay * 100);
             }
-            return null;
+            return new string[1];
         }
     }
 }
