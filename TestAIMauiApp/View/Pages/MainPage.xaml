@@ -2,12 +2,30 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TestAIMauiApp.MainPage">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ScrollView Grid.Row="0" Margin="15, 15, 15, 0">
+            <FlexLayout Direction="Column" >
+                <ImageButton Source="dotnet_bot.png" FlexLayout.Grow="0" IsVisible="False" BackgroundColor="AliceBlue" CornerRadius="25">
 
-    <ScrollView>
-        <Label
-    Text="Hello, World!"
-    Style="{StaticResource Headline}"
-    SemanticProperties.HeadingLevel="Level1" />
-    </ScrollView>
+                </ImageButton>
+
+                <FlexLayout FlexLayout.Grow="0">
+                </FlexLayout>
+                <Editor AutoSize="TextChanges" Placeholder="Представь кота в скафандре, который летит среди звёзд и планет, держа в лапках маленькую Землю. Вокруг него плавают разноцветные кометы и астероиды, а на заднем плане виднеется Млечный Путь" 
+                        FlexLayout.Grow="1"
+                        FontSize="Large" 
+                        BackgroundColor="Transparent" />
+            </FlexLayout>
+        </ScrollView>
+        <FlexLayout Grid.Row="1"  JustifyContent="End" Margin="15, 0, 15, 0">
+            <Button Text="Создать" FontSize="Medium" CornerRadius="15" Margin="0, 5, 0, 5"/>
+        </FlexLayout>
+
+    </Grid>
+    
 
 </ContentPage>
