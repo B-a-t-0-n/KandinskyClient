@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell
+    x:Class="TestAIMauiApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:TestAIMauiApp"
+    Shell.FlyoutBehavior="Disabled"
+    Title="TestAIMauiApp">
+
+    <FlyoutItem Route="MainPage" FlyoutDisplayOptions="AsMultipleItems">
+        <ShellContent ContentTemplate="{DataTemplate local:MainPage}"/>
+    </FlyoutItem>
+
+
+
+</Shell>
