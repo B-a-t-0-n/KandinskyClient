@@ -1,7 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TestAIMauiApp.MainPage">
+             x:Class="TestAIMauiApp.MainPage"
+             xmlns:viewmodel="clr-namespace:TestAIMauiApp.ViewModels"
+             x:DataType="viewmodel:MainViewModel">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
@@ -9,20 +11,19 @@
         </Grid.RowDefinitions>
         <ScrollView Grid.Row="0" Margin="15, 15, 15, 0">
             <FlexLayout Direction="Column" >
-                <ImageButton Source="dotnet_bot.png" FlexLayout.Grow="0" IsVisible="False" BackgroundColor="AliceBlue" CornerRadius="25">
+                <ImageButton Source="{Binding Image}" FlexLayout.Grow="0" IsVisible="{Binding HasImage}" BackgroundColor="AliceBlue" CornerRadius="25">
 
                 </ImageButton>
-
-                <FlexLayout FlexLayout.Grow="0">
-                </FlexLayout>
+                <Label FontSize="Medium" Text="Ваше изображение будет готово в течении от 10 сек до 1 мин 🕑" IsVisible="{Binding IsGenerate}" Margin="0,0,0,10"/>
                 <Editor AutoSize="TextChanges" Placeholder="Представь кота в скафандре, который летит среди звёзд и планет, держа в лапках маленькую Землю. Вокруг него плавают разноцветные кометы и астероиды, а на заднем плане виднеется Млечный Путь" 
                         FlexLayout.Grow="1"
+                        Text="{Binding Text}"
                         FontSize="Large" 
                         BackgroundColor="Transparent" />
             </FlexLayout>
         </ScrollView>
-        <FlexLayout Grid.Row="1"  JustifyContent="End" Margin="15, 0, 15, 0">
-            <Button Text="Создать" FontSize="Medium" CornerRadius="15" Margin="0, 5, 0, 5"/>
+        <FlexLayout IsVisible="{Binding IsGenerated}" Grid.Row="1"  JustifyContent="End" Margin="15, 0, 15, 0">
+            <Button Text="Создать" Command="{Binding GenerateCommand}" FontSize="Medium" CornerRadius="15" Margin="0, 5, 0, 5"/>
         </FlexLayout>
 
     </Grid>

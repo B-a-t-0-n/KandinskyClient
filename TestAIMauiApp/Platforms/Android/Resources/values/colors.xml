@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#1DCB74</color>
-    <color name="colorPrimaryDark">#1DCB74</color>
+    <color name="colorPrimaryDark">@color/mtrl_btn_transparent_bg_color</color>
     <color name="colorAccent">#1DCB74</color>
 </resources>

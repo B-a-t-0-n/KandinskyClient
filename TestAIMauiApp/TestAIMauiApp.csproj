@@ -64,7 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
+	  <ProjectReference Include="..\KandinskyLibrary\KandinskyLibrary.csproj" />
 	</ItemGroup>
 
 </Project>
